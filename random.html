@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>QT 工具</title>
+  </head>
+  <body>
+    <div id="random"></div>
+  </body>
+  <script>
+    function getRndInteger(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    function getRndStr() {
+      return getRndInteger(100, 200).toString().substring(1, 3);
+    }
+    var randomDiv = document.getElementById("random");
+    var s = "";
+    for (let i = 0; i < 100; i++) {
+      s += getRndStr() + " ";
+    }
+    randomDiv.innerText = s;
+  </script>
+</html>
