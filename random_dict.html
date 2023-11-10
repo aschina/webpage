@@ -9,7 +9,11 @@
   </body>
   <script>
     //var
-
+    const msg = new SpeechSynthesisUtterance();
+    msg.lang = "zh-CN"; // 使用的语言:中文
+    msg.volume = 0.8; // 声音音量：0-1
+    msg.rate = 3; // 语速：0-10
+    msg.pitch = 0.8; // 音高：0-1
     var randomDiv = document.getElementById("random");
     //var end
 
@@ -22,13 +26,15 @@
       .then((response) => response.json())
       .then((data) => {
         function genCi() {
-          var s = "";
+          let s = "";
           for (let i = 0; i < 3; i++) {
             let rand = getRndInteger(0, data.length);
 
             s += data[rand]["ci"] + " ";
           }
           randomDiv.innerText = s;
+          msg.text = s;
+          window.speechSynthesis.speak(msg);
         }
         randomDiv.onclick = genCi;
         genCi();
