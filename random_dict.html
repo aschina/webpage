@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>QT 工具</title>
+  </head>
+  <body>
+    <div id="random"></div>
+  </body>
+  <script>
+    //var
+
+    var randomDiv = document.getElementById("random");
+    //var end
+
+    //function
+    function getRndInteger(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    fetch("ci.json")
+      .then((response) => response.json())
+      .then((data) => {
+        function genCi() {
+          var s = "";
+          for (let i = 0; i < 3; i++) {
+            let rand = getRndInteger(0, data.length);
+
+            s += data[rand]["ci"] + " ";
+          }
+          randomDiv.innerText = s;
+        }
+        randomDiv.onclick = genCi;
+        genCi();
+      })
+      .catch((error) => console.error("Error:", error));
+  </script>
+</html>
